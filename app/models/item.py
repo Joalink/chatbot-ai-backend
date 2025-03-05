@@ -1,13 +1,7 @@
-from sqlalchemy import Column, Integer, String, Float
-from app.config.db import Base
+from sqlmodel import SQLModel, Field
 
-# from pydantic import BaseModel
-
-class Item(Base):
-    __tablename__ = "items"
-
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, index=True)
-    description = Column(String, index=True)
-    price = Column(Float)
-    tax = Column(Float, nullable=True)
+class Item(SQLModel, table=True):
+    id: int = Field(default=None, nullable=False, primary_key=True)
+    name: str
+    description: str = None
+    price: float

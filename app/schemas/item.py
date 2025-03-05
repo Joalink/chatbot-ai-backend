@@ -1,17 +1,9 @@
-from pydantic import BaseModel
+from sqlmodel import SQLModel
 
-class ItemCreate(BaseModel):
+class ItemCreate(SQLModel):
     name: str
     description: str = None
     price: float
-    tax: float = None
 
-class ItemResponse(BaseModel):
+class ItemResponse(ItemCreate):
     id: int
-    name: str
-    description: str = None
-    price: float
-    tax: float = None
-
-    class Config:
-        from_attributes = True
