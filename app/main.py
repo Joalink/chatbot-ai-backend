@@ -1,14 +1,15 @@
 from fastapi import FastAPI
-from app.core.database import init_db
-from app.api.v1.endpoints import items
+from app.database.session import init_db
+from app.routers import items
 
 app = FastAPI()
 
 @app.on_event("startup")
-def on_startup():
-    init_db()
+async def on_startup():
+    await init_db()
 
-app.include_router(items.router, prefix="/items", tags=["items"])
+app.include_router(items.router)
+
 
 @app.get("/")
 def root():
