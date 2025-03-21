@@ -1,7 +1,7 @@
 services:
   db:
     image: postgres:15
-    container_name: postgres_db
+    container_name: db_user
     restart: always
     environment:
       POSTGRES_USER: username
@@ -12,18 +12,15 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  app:
-    build: .
-    container_name: fastapi_app
+  user_service:
+    build: ./user-service
+    container_name: user_service
     depends_on:
       - db
     environment:
       DATABASE_URL: "postgresql+asyncpg://username:password@db:5432/database"
     ports:
       - "8000:8000"
-#    command: >
-#      sh -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"
-
 
 volumes:
   postgres_data:
