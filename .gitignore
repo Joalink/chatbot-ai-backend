@@ -1,0 +1,21 @@
+# Archivos y carpetas del IDE (PyCharm, VSCode, etc.)
+.idea/
+
+# Archivos de Python compilados
+__pycache__/
+*.py[cod]
+app/__pycache__
+
+# Entorno virtual de Python
+venv/
+.env/
+*.venv/
+venv/Lib/site-packages
+
+# Archivos de logs y temporales
+*.log
+*.tmp
+.DS_Store  # Para macOS
+Thumbs.db  # Para Windows
+
+
